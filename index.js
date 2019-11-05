@@ -9,7 +9,7 @@ bot.on('ready', () => {
 })
 
 // Create a new client:
-var rcon = new WebRcon(config.IP, config.Port)
+let rcon = new WebRcon(config.IP, config.Port)
  
 // Handle events:
 rcon.on('connect', function() {
