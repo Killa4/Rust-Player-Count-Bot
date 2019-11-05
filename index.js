@@ -33,6 +33,9 @@ rcon.on('message', function(msg) {
     } else if (data.Queued > 0){
         bot.user.setActivity(`(${data.Players}/${data.MaxPlayers} (${data.Queued}) Queued!)`);
         console.log(`(${data.Players}/${data.MaxPlayers} (${data.Queued}) Queued!)`);
+    } else if (data.Joining === 0){
+        bot.user.setActivity(`(${data.Players}/${data.MaxPlayers} Online!)`);
+        console.log(`(${data.Players}/${data.MaxPlayers} Online!)`);
     } else {
         bot.user.setActivity(`(${data.Players}/${data.MaxPlayers} (${data.Joining}) Joining!)`);
         console.log(`(${data.Players}/${data.MaxPlayers} (${data.Joining}) Joining!)`);
