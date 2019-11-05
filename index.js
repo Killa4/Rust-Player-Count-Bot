@@ -28,7 +28,7 @@ rcon.on('message', function(msg) {
     // Parse Messages
     const data = JSON.parse(msg.message)  
     // Set Discord status (Some modded chats have parsing issue this prevents that issue from messing with status)
-    if (!data.Players){
+    if (data.Players === undefined){
         return;
     } else if (data.Queued > 0){
         bot.user.setActivity(`(${data.Players}/${data.MaxPlayers} (${data.Queued}) Queued!)`);
