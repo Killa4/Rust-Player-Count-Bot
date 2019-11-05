@@ -27,8 +27,8 @@ setInterval(getData, Math.max(5, config.SetInterval || 5) * 1000);
 rcon.on('message', function(msg) {
     // Parse Messages
     const data = JSON.parse(msg.message)  
-    // Set Discord status (No idea why it returns undefined sometimes simple fix added to prevent it.)
-    if (data.Players === undefined){
+    // Set Discord status (Some modded chats have parsing issue this prevents that issue from messing with status)
+    if (!data.Players){
         return;
     } else if (data.Queued > 0){
         bot.user.setActivity(`(${data.Players}/${data.MaxPlayers} (${data.Queued}) Queued!)`);
