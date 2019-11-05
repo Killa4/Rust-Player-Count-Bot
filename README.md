@@ -11,6 +11,5 @@ https://gyazo.com/3f77e646e19b545854a20f846036fa22
 2. Clone the repository onto your computer.
 3. Open a terminal in that folder, and install the packages with `npm install`.
 4. Open the `config.json` and add your server information.
-5. Edit `Start.bat` with your folder path.
-6. Once the path is correct run start.bat and console window will pop up with the status messages as it updates discord.
+5. Once the config is correct run start.bat and console window will pop up with the status messages as it updates discord.
 
