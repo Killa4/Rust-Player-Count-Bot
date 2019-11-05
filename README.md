@@ -2,7 +2,7 @@
 
 This bot will connect to rcon and display your player count of your server as a status message.
 
-![Example output from the bot.](https://gyazo.com/3f77e646e19b545854a20f846036fa22)
+![Example output from the bot.] https://gyazo.com/3f77e646e19b545854a20f846036fa22
 
 ## How to setup
 
