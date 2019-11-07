@@ -13,11 +13,10 @@ bot.on('disconnected', () => {
     console.log('Discord bot Error / Got disconnected (Trying to reconnect)')
 });
 
-// Create a new client:
+// New rcon client 
 let rcon = new WebRcon(config.IP, config.Port)
  
-// Handle events:
-let refreshing = false
+// Connect to rcon function / Get serverinfo data
 rcon.on('connect', function() {
     try {
     connect = true 
@@ -71,7 +70,7 @@ function setMessage(newMessage) {
         lastMessage = newMessage
     }
 }
-
+// Disconnect function to know when the rcon gets disconnected / server restarts
 rcon.on('disconnect', function() {
     connect = false;
     bot.user.setActivity('Server Offline...');
