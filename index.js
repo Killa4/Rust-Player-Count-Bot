@@ -1,18 +1,23 @@
 const WebRcon = require('webrconjs') 
 const Discord = require('discord.js')
-const bot = new Discord.Client()
+const bot = new Discord.Client({autoReconnect:true});
 const config = require('config.json')('./config.json')
 let connect = null;
 
 // Login to discord 
 bot.on('ready', () => {
 	console.log('Logged in as', bot.user.tag)
-})
+}) 
+//Catch discord disconnects
+bot.on('disconnected', () => {
+    console.log('Discord bot Error / Got disconnected (Trying to reconnect)')
+});
 
 // Create a new client:
 let rcon = new WebRcon(config.IP, config.Port)
  
 // Handle events:
+let refreshing = false
 rcon.on('connect', function() {
     try {
     connect = true 
@@ -28,8 +33,11 @@ rcon.on('connect', function() {
             }
         }
         getData();
+        try {
         // Rerun command over set interval 
         setInterval(getData, Math.max(5, config.SetInterval || 5) * 1000);
+        } catch {
+        }
     }
 });
 
