@@ -48,16 +48,29 @@ rcon.on('message', function(msg) {
     if (data.Players === undefined){
         return;
     } else if (data.Queued > 0){
-        bot.user.setActivity(`(${data.Players}/${data.MaxPlayers} (${data.Queued}) Queued!)`);
-        console.log(`(${data.Players}/${data.MaxPlayers} (${data.Queued}) Queued!)`);
+        setMessage(`(${data.Players}/${data.MaxPlayers} (${data.Queued}) Queued!)`);
+        waitForMessage = true
     } else if (data.Joining === 0){
-        bot.user.setActivity(`(${data.Players}/${data.MaxPlayers} Online!)`);
-        console.log(`(${data.Players}/${data.MaxPlayers} Online!)`);
+        setMessage(`(${data.Players}/${data.MaxPlayers} Online!)`);
+        waitForMessage = true
     } else {
-        bot.user.setActivity(`(${data.Players}/${data.MaxPlayers} (${data.Joining}) Joining!)`);
-        console.log(`(${data.Players}/${data.MaxPlayers} (${data.Joining}) Joining!)`);
+        setMessage(`(${data.Players}/${data.MaxPlayers} (${data.Joining}) Joining!)`);
+        waitForMessage = true
     }
 })
+//Spam prevention to discord api (If message is the same it will not paste over and over!)
+let waitingForMessage = false
+let lastMessage = ''
+let mewMessage = ''
+function setMessage(newMessage) {
+    if (waitingForMessage === true || newMessage === lastMessage) {
+        return
+    } else {
+        bot.user.setActivity(newMessage);
+        console.log(newMessage);
+        lastMessage = newMessage
+    }
+}
 
 rcon.on('disconnect', function() {
     connect = false;
