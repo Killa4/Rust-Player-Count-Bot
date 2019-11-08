@@ -19,8 +19,9 @@ let rcon = new WebRcon(config.IP, config.Port)
 // Connect to rcon function / Get serverinfo data
 rcon.on('connect', function() {
     try {
-    connect = true 
-    console.log('CONNECTED')
+    connect = true;
+    console.log('CONNECTED');
+    lastMessage = '';
     bot.user.setActivity('Server Connecting...');
     } catch {
     }
