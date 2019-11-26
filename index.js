@@ -61,7 +61,7 @@ rcon.on('message', function(msg) {
 //Spam prevention to discord api (If message is the same it will not paste over and over!)
 let waitingForMessage = false
 let lastMessage = ''
-let mewMessage = ''
+let newMessage = ''
 function setMessage(newMessage) {
     if (waitingForMessage === true || newMessage === lastMessage) {
         return
