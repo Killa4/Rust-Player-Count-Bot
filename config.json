@@ -1,7 +1,17 @@
 {
-  "IP":"",
-  "Port": 28015,
-  "RconPassword": "",
   "SetInterval": "5",
-  "DiscordToken": ""
+  "Servers": [
+      {
+          "IP":"",
+          "Port": 28015,
+          "RconPassword": "",
+          "DiscordToken": ""
+      },
+      {
+          "IP":"",
+          "Port": 28015,
+          "RconPassword": "",
+          "DiscordToken": "NDY1MDA1OTA2NjQ4NzYwMzQw.XgM4RQ.VUpQtafEphDdJCGw_01Sc941Q6I"
+      }
+  ]
 }
