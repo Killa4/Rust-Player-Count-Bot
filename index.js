@@ -38,7 +38,7 @@ config.Servers.forEach((server, index) => {
             getData();
             try {
                 // Rerun command over set interval 
-                setInterval(getData, Math.max(5, config.SetInterval || 5) * 1000);
+                setTimeout(reconnect, config.setTimeout);
             } catch {
             }
         }
@@ -80,7 +80,7 @@ config.Servers.forEach((server, index) => {
         if (server.connected === false) {
             try {
                 console.log(server.name, "TRYING TO RECONNECT");
-                setInterval(reconnect, Math.max(5, 5 || 5) * 1000);
+                setTimeout(reconnect, config.setTimeout);
             } catch {
             }
         }
