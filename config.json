@@ -1,5 +1,5 @@
 {
-  "SetInterval": "5",
+  "SetTimeout": "5000",
   "Servers": [
       {
           "IP":"",
