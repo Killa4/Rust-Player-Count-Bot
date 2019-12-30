@@ -28,20 +28,16 @@ config.Servers.forEach((server, index) => {
             server.bot.user.setActivity('Server Connecting...');
         } catch {
         }
-        if (server.connected === true) {
             function getData() {
+                if (server.connected === true) {
                 try {
                     server.rcon.run('serverinfo', 0);
+                    setTimeout(getData, config.SetTimeout);
                 } catch {
                 }
             }
-            getData();
-            try {
-                // Rerun command over set interval 
-                setTimeout(reconnect, config.SetTimeout);
-            } catch {
-            }
         }
+        getData();
     });
 
     server.rcon.on('message', function (msg) {
@@ -52,23 +48,24 @@ config.Servers.forEach((server, index) => {
             return;
         } else if (data.Queued > 0) {
             setMessage(`(${data.Players}/${data.MaxPlayers} (${data.Queued}) Queued!)`);
-            waitForMessage = true
+            waitingForMessage = true
         } else if (data.Joining === 0) {
             setMessage(`(${data.Players}/${data.MaxPlayers} Online!)`);
-            waitForMessage = true
+            waitingForMessage = true
         } else {
             setMessage(`(${data.Players}/${data.MaxPlayers} (${data.Joining}) Joining!)`);
-            waitForMessage = true
+            waitingForMessage = true
         }
     })
     //Spam prevention to discord api (If message is the same it will not paste over and over!)
     function setMessage(newMessage) {
-        if (waitingForMessage === true || newMessage === lastMessage) {
-            return
+        if (waitingForMessage === true && newMessage === lastMessage) {
+			console.log('Discord Spam Prevention (Message is the same)');
         } else {
             server.bot.user.setActivity(newMessage);
             console.log(server.name, newMessage);
             lastMessage = newMessage
+			waitingForMessage = false;
         }
     }
     // Disconnect function to know when the rcon gets disconnected / server restarts
