@@ -20,8 +20,12 @@ config.Servers.forEach((server, index) => {
         reconnect()
     })
 
-    server.bot.on('shardError', error => {
-	 console.error('A websocket connection encountered an error:', error);
+    server.bot.on('error', error => {
+	 console.error('The websocket connection encountered an error:', error);
+    });
+
+    server.process.on('unhandledRejection', error => {
+	console.error('Unhandled promise rejection:', error);
     });
 
     server.rcon.on('connect', function () {
