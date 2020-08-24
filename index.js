@@ -20,6 +20,10 @@ config.Servers.forEach((server, index) => {
         reconnect()
     })
 
+    server.bot.on('shardError', error => {
+	 console.error('A websocket connection encountered an error:', error);
+    });
+
     server.rcon.on('connect', function () {
         try {
             server.connected = true;
