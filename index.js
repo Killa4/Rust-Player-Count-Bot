@@ -24,7 +24,7 @@ config.Servers.forEach((server, index) => {
 	 console.error('The websocket connection encountered an error:', error);
     });
 
-    server.process.on('unhandledRejection', error => {
+    process.on('unhandledRejection', error => {
 	console.error('Unhandled promise rejection:', error);
     });
 
